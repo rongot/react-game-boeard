@@ -1,0 +1,9 @@
+export const NUMBER_OF_CIRCLE=16;
+export const NO_PLAYER=0;
+export const PLAYER_1=1;
+export const PLAYER_2=2;
+//havent start yet
+export const GAME_STATE_IDLE=0;
+export const GAME_STATE_PLAYING=1;
+export const GAME_STATE_WINNER=2;
+export const GAME_STATE_DREW=3;

@@ -5,15 +5,18 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { isWinner } from "../Helper/helper";
 
-const NUMBER_OF_CIRCLE=16;
-const NO_PLAYER=0;
-const PLAYER_1=1;
-const PLAYER_2=2;
+import { GAME_STATE_PLAYING } from "../Helper/constant";
+import { PLAYER_1,PLAYER_2,NUMBER_OF_CIRCLE ,GAME_STATE_WINNER,NO_PLAYER} from "../Helper/constant";
+
+
+
 
 const GameBoard=()=>{
 
     const [gameBoard,setGameBoard]=useState([Array(16).fill(NO_PLAYER)])
     const [currentPlayer,setCurrentPlayer]=useState(PLAYER_1)
+    const [gameState,setGameState]=useState(GAME_STATE_PLAYING)
+    const [winPlayer,setWinPlayerState]=useState(NO_PLAYER)
     // console.log(gameBoard)
 
     // const initBoard=()=>{
@@ -34,31 +37,31 @@ const GameBoard=()=>{
     }
 
     const circleClick=(id)=>{
+    
+   console.log("circle clicked "+id)
+    // if(gameBoard[id] !== NO_PLAYER) return;
+    // if(gameState !== GAME_STATE_PLAYING) return;
+    
     gameBoard[id]=currentPlayer
+
     // const board=[...GameBoard]
     // board[id]=currentPlayer;
     // setGameBoard(board)
     // setGameBoard(gameBoard)
-    console.log("gameBoard "+gameBoard)
-    console.log("id "+id)
-    console.log("currentPlayer "+currentPlayer)
+
     if (isWinner(gameBoard,id,currentPlayer)){
-        alert("winner")
+        setGameState(GAME_STATE_WINNER)
+        setWinPlayerState()
     }
     setGameBoard(prev => {
         // debugger;
         return prev.map((circle,pos)=>{
             if(pos === id) return currentPlayer
             return circle
-
-            
-        })
+      })
     })
-    if (isWinner(gameBoard)){
-        alert("winner")
-    }
     setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1)
-    // console.log("currentPlayer "+currentPlayer)
+   
    
 }
 const renderCircle=id=>{
@@ -67,7 +70,7 @@ const renderCircle=id=>{
     
     return (
     <>
-        <Header player={currentPlayer}/>,
+        <Header gameState={gameState} currentPlayer={currentPlayer} winPlayer={winPlayer}/>,
         <div className="gameBoard">
         {initCircle()}
         </div>
