@@ -1,16 +1,19 @@
 import React from 'react'
 import '../css/Game.css'
-import { GAME_STATE_PLAYING,GAME_STATE_WINNER } from '../Helper/constant'
+import { GAME_STATE_DREW, GAME_STATE_PLAYING,GAME_STATE_WINNER } from '../Helper/constant'
 
 
 const Header = ({gameState,currentPlayer,winPlayer}) => {
    const renderLabel=()=>{
     switch(gameState){
         case GAME_STATE_PLAYING:
-            return <div>player{currentPlayer} turn</div>;
+            return <div>player {currentPlayer} turn</div>;
          
         case GAME_STATE_WINNER:
-           return <div>player{winPlayer} wins</div>
+           return <div>player {winPlayer} wins</div>
+          
+        case GAME_STATE_DREW:
+          return <div> Game is Draw </div>
            
         default:
             // return <div>player{player} wins</div>
