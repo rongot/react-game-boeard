@@ -34,3 +34,15 @@ for(let i=0;i<winLines.length;i++){
     return count === 0;
 
  }
+
+ export const getComputerMove=(gameBoard)=>{
+    let valideMoves=[];
+    for (let index = 0; index < gameBoard.length; index++) {
+        if(gameBoard[index] === 0){
+            valideMoves.push(index)
+        }
+    }
+    let randMove=Math.floor(Math.random() * valideMoves.length)
+    console.log("randMove = "+randMove)
+    return valideMoves[randMove]
+ }
