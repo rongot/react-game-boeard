@@ -1,5 +1,9 @@
+:root{
+    --background-color:lightgoldenrodyellow;
+    --panel-backgraoud-color:lightgoldenrodyellow
+}
 body{
-    background-color:cornflowerblue;
+    background-color:var(--background-color);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -14,7 +18,7 @@ body{
     
 .pannel{
     position: absolute;
-    background-color: lightgoldenrodyellow;
+    background-color: var(--panel-backgraoud-color);
     border: 8px solid burlywood;
     -webkit-box-shadow:7px 5px 15px 3px rgba(0, 0, 0, 0.9);
     box-shadow: 7px 5px 15px 3px rgba(0, 0, 0, 0.9);
@@ -49,11 +53,11 @@ body{
     grid-template-columns: 1fr 1fr;
 }
 .footer button{
-  /* position: relative;
+  position: relative;
   left: 50%;
-  top: 20%; */
+  top: 20%;
   /* margin-bottom: 80px; */
-  width: 140px;
+  width: 150px;
   height: 50px;
   background-color: lightblue;
   font-size: 20px;

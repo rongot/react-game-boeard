@@ -99,7 +99,7 @@ const suggestMove=()=>{
         <div className="gameBoard">
         {initCircle()}
         </div>
-       <Footer onNewGameClick={initGame} onSuggestClick={suggestMove}/>
+       <Footer onNewGameClick={initGame} onSuggestClick={suggestMove} gameState={gameState}/>
     </>
 
     ) 

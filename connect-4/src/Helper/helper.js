@@ -35,7 +35,7 @@ for(let i=0;i<winLines.length;i++){
 
  }
 
- export const getComputerMove=(gameBoard)=>{
+ const getRandomComputerMove=(gameBoard)=>{
     let valideMoves=[];
     for (let index = 0; index < gameBoard.length; index++) {
         if(gameBoard[index] === 0){
@@ -46,3 +46,71 @@ for(let i=0;i<winLines.length;i++){
     console.log("randMove = "+randMove)
     return valideMoves[randMove]
  }
+
+ const getPosition=(gameBoard,movechecks)=>{
+    for (let check = 0; check < movechecks.length; check++) {
+        for (let index = 0; index < movechecks[check].max; index+=movechecks[check].step) {
+            let series=gameBoard[index + movechecks[check].indexes[0].toString()] +
+                       gameBoard[index + movechecks[check].indexes[1].toString()] +
+                       gameBoard[index + movechecks[check].indexes[2].toString()] +
+                       gameBoard[index + movechecks[check].indexes[3].toString()]
+
+            switch(series){
+                case "1110":
+                case "2220":
+                    return index+movechecks[check].indexes[3]
+                case "1101":
+                case "2202":
+                    return index+movechecks[check].indexes[2]
+                case "1011":
+                case "2022":
+                    return index+movechecks[check].indexes[1]
+                case "0111":
+                case "0222":
+                     return index+movechecks[check].indexes[0]
+                default:
+            }
+        
+        
+    }
+    
+}
+return -1
+ }
+
+ export const getComputerMove=(gameBoard)=>{
+ let movechecks=[{
+    // vertical
+    indexes:[0,4,8,12],
+    max:4,
+    step:1
+
+ },
+ {
+    // horizontal
+    indexes:[1,2,3,4],
+    max:16,
+    step:4
+
+ },
+ //diagonal
+ {
+    // horizontal
+    indexes:[0,5,10,16],
+    max:16,
+    step:16
+
+ },
+ {
+    // horizontal
+    indexes:[3,6,9,12],
+    max:16,
+    step:16
+
+ }
+
+]
+let position=getPosition(gameBoard,movechecks)
+if(position > -1)return position
+return getRandomComputerMove(gameBoard)
+ } 
